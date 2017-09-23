@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+	{% placeholder "content" %}
+
+		{% placeholder 'connect' or %}
+	<div class="container-fluid" style="margin-top:15px;">
+
+<div class="connect row">
+   
+
+   <div class="onseconnait col-md-6" style="padding-left:20px;padding-right:20px;">
+
+        <div class="page-header">
+        <h2 style="margin: 20px 0px;color:white;"><strong>Se Connecter
+        </strong></h2>
+<p style="color:white;">Connectez-vous pour accéder à votre compte</p>
+<p style="color:white;"> Et retrouver tous vos avantages.</p>
+        </div>
+ <div style="margin-bottom: 12px;margin-left:18px;" class="input-group form1 col-md-7 form-group has-warning">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+  </div>
+  
+   <div style="margin-bottom:20px;margin-left:18px;" class="input-group form1 col-md-7 form-group has-warning">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="login-username"  type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+  </div>
+        <div class="col-md-8">
+        <button  type="submit" class="btn btn-warning btn-block ">Se connecter</button>
+        </div>
+      </div>
+
+
+  
+    <div class="onseconnait2 col-md-6">
+
+    <div class="page-header">
+  <h2 style="margin: 20px 0px;color:white;"><strong>Première visite ?</strong></h2>
+  <p style="color:white;">Bonjour chèr(e) inconnu(e), on ne se connaît pas...</p> 
+  <p style="color:white;">Aucun problème, continuez c’est tout droit.</p>
+
+    </div>
+
+      <div class="form1 col-lg-offset-2 col-md-7 form-group">
+          <button class="btn btn-warning btn-block">S'inscrire</button>
+        </div>
+      
+</div>
+</div>
+</div>
+{% endplaceholder %}
+{% endblock content %}

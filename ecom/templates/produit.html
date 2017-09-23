@@ -1,0 +1,35 @@
+
+{%load static%}
+{% include "snipcart.html" %}
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="{{instance.product.image}}" class="img-responsive" alt="Berry Lace Dress">
+                <div>
+                  <a href="#" class="btn">Zoom</a>
+                  <a href="#" class="btn">View</a>
+                </div>
+              </div>
+              <h3><a href="">{{instance.product.name}}</a></h3>
+              <div class="pi-price">{{instance.product.price}}</div>
+              <button
+                                class="snipcart-add-item"
+                                data-item-id="2"
+                                data-item-name="test"
+                                data-item-price="00.00"
+                                data-item-weight="20"
+                                data-item-url="http://wagtail-snipcart.herokuapp.com"
+                                data-item-description="Some fresh bacon"
+     class="btn btn-primary">Buy Now!</button>
+              <a  
+                                class="snipcart-add-item btn add2cart"
+                                data-item-id="2"
+                                data-item-name="{{instance.product.name}}"
+                                data-item-price="{{instance.product.price}}"
+                                data-item-weight="20"
+                                data-item-url="http://wagtail-snipcart.herokuapp.com"
+                                data-item-description="Some fresh bacon"> Add to cart</a>
+              <div class="sticker sticker-new"></div>
+            </div>
+       
+
+	
