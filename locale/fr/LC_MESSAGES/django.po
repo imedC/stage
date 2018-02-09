@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-30 10:12+0100\n"
+"POT-Creation-Date: 2017-12-19 15:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,37 +42,52 @@ msgstr ""
 msgid "Arabe"
 msgstr ""
 
-#: ecom/templates/base.html:98
+#: ecom/templates/base.html:141 ecom/templates/basevisitor.html:100
 msgid "Category"
 msgstr "Catégories "
 
-#: ecom/templates/base.html:101
+#: ecom/templates/base.html:144 ecom/templates/basevisitor.html:103
+#: rpc/templates/rpc/index.html:374 rpc/views.py:97
 msgid "Software"
 msgstr "Logiciel "
 
-#: ecom/templates/base.html:102
+#: ecom/templates/base.html:145 ecom/templates/basevisitor.html:104
+#: rpc/templates/rpc/index.html:373 rpc/views.py:129
 msgid "Physical"
 msgstr "Physiques "
 
-#: ecom/templates/base.html:114 ecom/templates/base.html.py:125
+#: ecom/templates/base.html:155 ecom/templates/base.html.py:167
+#: ecom/templates/basevisitor.html:111 ecom/templates/basevisitor.html:123
 msgid "Login"
 msgstr "Connectez-vous"
 
-#: ecom/templates/base.html:118
+#: ecom/templates/base.html:160 ecom/templates/basevisitor.html:116
 msgid "Name:"
 msgstr "Nom: "
 
-#: ecom/templates/base.html:122
+#: ecom/templates/base.html:164 ecom/templates/basevisitor.html:120
 msgid "Password:"
 msgstr "Mot de passe: "
 
-#: rpc/templates/rpc/category.html:42
+#: ecom/templates/base.html:173
+msgid "Cart"
+msgstr "Chariot"
+
+#: ecom/templates/base.html:176 ecom/templates/basevisitor.html:127
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: ecom/templates/base.html:179
+msgid "Log Out"
+msgstr " Se Déconnecter"
+
+#: rpc/templates/rpc/category.html:42 rpc/templates/rpc/single-product.html:119
 msgid "Add to cart"
 msgstr "Ajouter au panier"
 
-#: rpc/templates/rpc/index.html:17
+#: rpc/templates/rpc/index.html:17 rpc/templates/rpc/single-product.html:12
 msgid "Shop now"
-msgstr "Achetez maintenant "
+msgstr "Achat"
 
 #: rpc/templates/rpc/index.html:33
 msgid "30 Days return"
@@ -84,19 +99,15 @@ msgstr "Livraison gratuite "
 
 #: rpc/templates/rpc/index.html:45
 msgid "Secure payments"
-msgstr "Sécurisez vos payements"
+msgstr "Paiement séccurisé"
 
 #: rpc/templates/rpc/index.html:51
-#, fuzzy
-#| msgid "Search Products"
 msgid "New products"
-msgstr "Rechercher des Produits "
+msgstr "Nouveaux Produits"
 
 #: rpc/templates/rpc/index.html:64
-#, fuzzy
-#| msgid "Search Products"
 msgid "Latest Products"
-msgstr "Rechercher des Produits "
+msgstr "Nos derniers produits"
 
 #: rpc/templates/rpc/index.html:75
 msgid " Add to cart"
@@ -106,6 +117,23 @@ msgstr "Ajouter au panier"
 msgid " See details"
 msgstr "Voir les details"
 
+#: rpc/templates/rpc/index.html:200
+msgid "Top Sellers"
+msgstr "Les Meilleures Ventes "
+
+#: rpc/templates/rpc/index.html:201 rpc/templates/rpc/index.html.py:252
+#: rpc/templates/rpc/index.html:300
+msgid "View All"
+msgstr "Voir Tout"
+
+#: rpc/templates/rpc/index.html:251
+msgid "Recently Viewed"
+msgstr "Vue Récemment"
+
+#: rpc/templates/rpc/index.html:299
+msgid "Top New"
+msgstr "Actualité à la Une"
+
 #: rpc/templates/rpc/index.html:356
 msgid ""
 " Fogits is the first Tunisian SSII / SSLL specializing in Green IT by "
@@ -114,35 +142,88 @@ msgstr ""
 "Fogits est la première SSII / SSLL Tunisienne spécialisée en Green IT en "
 "proposant des prestations en TIC éco-responsables "
 
+#: rpc/templates/rpc/index.html:357
+msgid ""
+" It offers high-performance training, services and solutions at low cost, "
+"combined with an environmental approach by implementing Green IT principles. "
+msgstr ""
+"Elle offre des services et des solutions à haute performance et à faible "
+"coût, associés à une approche environnementale par la mise en œuvre des "
+"principes de Green IT."
+
+#: rpc/templates/rpc/index.html:370
+msgid "Categories"
+msgstr "Catégories "
+
+#: rpc/templates/rpc/index.html:372
+msgid "Services"
+msgstr "Services"
+
+#: rpc/templates/rpc/index.html:375
+msgid "Computer"
+msgstr "Equipements"
+
+#: rpc/templates/rpc/index.html:382
+msgid "Keep in touch"
+msgstr "Restez en contact"
+
+#: rpc/templates/rpc/index.html:394
+msgid "Newsletter"
+msgstr ""
+
+#: rpc/templates/rpc/index.html:395
+msgid ""
+"Sign up to our newsletter and get exclusive deals you wont find anywhere "
+"else straight to your inbox!"
+msgstr ""
+"Inscrivez-vous à notre newsletter et obtenez des offres exclusives que vous "
+"ne trouverez nulle part Sinon, directement dans votre boîte de réception!"
+
+#: rpc/templates/rpc/index.html:398
+msgid "Type your email"
+msgstr "Saisissez votre e-mail"
+
+#: rpc/templates/rpc/index.html:399
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: rpc/templates/rpc/index.html:421
+msgid "All Rights Reserved."
+msgstr "Tous droits réservés"
+
 #: rpc/templates/rpc/single-product.html:26
 msgid "Search Products"
-msgstr "Rechercher des Produits "
+msgstr "Recherchez des Produits "
 
 #: rpc/templates/rpc/single-product.html:34
-#, fuzzy
-#| msgid "All Products"
 msgid "Products"
-msgstr "Tout les Produits"
+msgstr "Tous les Produits"
 
 #: rpc/templates/rpc/single-product.html:66
 msgid "Recent Posts"
 msgstr "Articles récents "
 
-#: rpc/templates/rpc/single-product.html:135
-#, python-format
-msgid ""
-" \n"
-"                                                %(descr)s "
-msgstr ""
-"Le Samsung J7 2016 est un smartphone d'entrée de gamme, mais, rare à ce "
-"niveau de prix %(descr)s "
+#: rpc/templates/rpc/single-product.html:80
+msgid "Home"
+msgstr "Accueil "
 
-#: rpc/views.py:157
+#: rpc/templates/rpc/single-product.html:123
+msgid "awesome"
+msgstr "awwwwwwwwww"
+
+#: rpc/views.py:162
 msgid "All Products"
-msgstr "Tout les Produits"
+msgstr "Tous les Produits"
 
-msgid " %(descr)s  "
-msgstr ""
-"Écoutez tous les détails de votre musique chaque fois que vous écoutez "
-"les écouteurs  %(descr)s intra-auriculaires Apple avec télécommande et "
-"micro"
+#~ msgid ""
+#~ " \n"
+#~ "                                                %(descr)s "
+#~ msgstr ""
+#~ "Le Samsung J7 2016 est un smartphone d'entrée de gamme, mais, rare à ce "
+#~ "niveau de prix %(descr)s "
+
+#~ msgid " %(descr)s  "
+#~ msgstr ""
+#~ "Écoutez tous les détails de votre musique chaque fois que vous écoutez "
+#~ "les écouteurs  %(descr)s intra-auriculaires Apple avec télécommande et "
+#~ "micro"

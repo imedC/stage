@@ -19,6 +19,8 @@ urlpatterns = [
 		, views.single, name='single'),
 
 	url(r'^login/$', views.login_user, name='login'),
+	url(r'^register/$', views.UserFormView.as_view(), name = 'register'),
+	url(r'^logout/$', views.logout_user, name='logout'),
 
 ]
 

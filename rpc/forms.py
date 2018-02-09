@@ -12,10 +12,18 @@ class UserForm(forms.ModelForm):
 	def clean(self):
 		super(UserForm, self).clean()
 		data = self.cleaned_data
-		if data["password"] != data["password2"]:
+		if data["username"]==True:
+			raise forms.ValidationError({'username': ["username already exists"]})
+		if data["password"] =="":
+			raise forms.ValidationError({'password': ["Password invalid."]})
+		elif data["password"] != data["password2"]:
 			raise forms.ValidationError({'password': ["Passwords must be the same."]})
 		elif len(data["password"]) <6:
 			raise forms.ValidationError({'password': ["password must be at least 6 characters"]})
+	
+		if data["email"]==True:
+			raise forms.ValidationError({'email': ["email is already in use"]})
+
 		return data
 
 
@@ -24,14 +32,12 @@ class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
 		'placeholder': 'Your password'}))
 	username = forms.CharField(
-		widget=forms.TextInput(attrs={'class': 'form-control','placeholder': 'Your username'}), 
+		widget=forms.TextInput(attrs={'class': 'form-control','placeholder': 'Your username',}),
 		max_length=30,
-		required=True )
+		required=True)
 	email = forms.CharField(
 		widget=forms.EmailInput(attrs={'class': 'form-control','placeholder': 'Your email'}),
 		required=True,
-		label= 'Your Email',
-
 		max_length=75 )
 
 	class Meta:

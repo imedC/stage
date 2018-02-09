@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{%extends 'base.html' %}
 {% load cms_tags %}
 {% load i18n %}
 {%block content %}
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2> {% placeholder 'text' %}</h2>
+                        <h2>  {{text}}  </h2>
                     </div>
                 </div>
             </div>
@@ -22,24 +22,30 @@
         <div class="container">
             <div class="row">
             {%for c in cat %}
-                <div class="col-md-3 col-sm-6">
+                <div class="col-sm-offset-1 col-md-3 col-sm-6" >
                     <div class="single-shop-product">
                         <div class="product-upper">
                             <img src="data:image/png;base64,{{c.image_medium}}" alt="">
                         </div>
                         <h2><a href="{% url 'rpc:single' pk=c.id name=c.name list_price=c.list_price image=c.image_medium description=c.description  %}">{{c.name}}</a></h2>
                         <div class="product-carousel-price">
-                            <ins>{{c.list_price}}</ins> <del>$999.00</del>
+                            <ins>{{c.list_price}}</ins> 
                         </div>  
                         
                         <div class="product-option-shop">
-                            <button class="snipcart-add-item"
-                                        data-item-id="{{c.id}}"
-                                        data-item-name="{{c.name}}"
-                                        data-item-price="{{c.list_price}}"
-                                        data-item-url="http://284dfb8f.ngrok.io/fr/all_products/"
-                                        data-item-description="{{c.descr}}" type="submit">
+                                                                    {% if user.is_authenticated %}
+                                        <button class="snipcart-add-item"
+                                         type="submit">
+                                        {%placeholder "shop"%}</button>
+                                        {%else%}
+                                        <button class="snipcart-add-item"
+                                        data-item-id="1"
+                                        data-item-name="{{name}}"
+                                        data-item-price="{{list_price}}"
+                                        data-item-url="http://5ea5792a.ngrok.io/fr/all_products/"
+                                        data-item-description="{{descr}}" type="submit">
                                         {% trans 'Add to cart' %}</button>
+                                        {%endif%}
                         </div>                       
                     </div>
                 </div>

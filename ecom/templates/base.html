@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/img/logo.png" />
     <title>Fogits Solutions</title>
     
     <!-- Google Fonts -->
@@ -54,30 +55,72 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6">
-                 <div class="shopping-item">
-                 <ul class="nav navbar-nav active">
-                        <li class="dropdown dropdown-small">
-                                <a id="selected" aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span> LANGUAGE</span><span class="caret"></span></a>
-                                
-                                <ul class="dropmenu dropdown-menu">
-{% get_available_languages as languages %}
+                <div class="col-sm-6" style="padding-top:80px;">
+                <button type="button" class="btnlan pull-right btn btn-primary btn-sm" 
+        data-toggle="toggle" data-target="#demo">
+    <img id="imgNavSel" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavSel">FR</span> <span class="caret"></span>
+</button>
+
+<div id="demo" class="pull-right">
+    
+        {% get_available_languages as languages %}
 {% for lang_code, lang_name in languages %}
 {% language lang_code %}
-<li id="language"><a href="/{{ lang_code }}{{ request.get_full_path|slice:'3:' }}">
-{{ lang_name }}</a></li>
+<button class="btnlan btn btn-primary btn-sm" >
+<a href="/{{ lang_code }}{{ request.get_full_path|slice:'3:' }}" style="color:white;">
+{{ lang_code }}</a>
+</button>
 {% endlanguage %}
 {% endfor %}
+    
+</div>
+<div class="shopping-item">
+                 
 
-                                </ul>
-                            </li>
-                            </ul>
+
+
+
+
+<script type="text/javascript">
+  $("[data-toggle='toggle']").click(function() {
+    var selector = $(this).data("target");
+    $(selector).toggleClass('in');
+});
+</script>
+        <script type="text/javascript">
+$(document).ready(function() {
+    var fraImgLink = "http://www.roemheld.de/IT/Data/Images/Address/Frankreich.gif";
+    var engImgLink = "http://www.roemheld.de/IT/Data/Images/Address/Grossbritanien.gif";
+    var imgBtnFra = $('#imgNavFra');
+    var imgBtnEng = $('#imgNavEng');
+    imgBtnFra.attr("src",fraImgLink);
+    imgBtnEng.attr("src",engImgLink);
+    var spanNavSel = $('#lanNavSel');
+    var imgNavSel = $('#imgNavSel');
+    var winLocation = window.location;
+    var loc = winLocation + "";
+    if(loc.indexOf("fr") == 22) {
+       
+       $("#lanNavSel").text("FR");
+       imgNavSel.attr("src",fraImgLink);
+    }
+    else {
+       
+       $("#lanNavSel").text("EN");
+       imgNavSel.attr("src",engImgLink);
+    }
+
+});
+        </script>
+                  
+
                     </div>
                     
                 </div>
             </div>
         </div>
     </div> <!-- End site branding area -->
+
 
     <div class="mainmenu-area">
         <div class="container">
@@ -102,12 +145,41 @@
                                     <li id="language"><a href="{% url 'rpc:physical' %}">{% trans 'Physical' %}</a></li>
                                 </ul>
                             </li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
-                        
-                            <li>
-                            <a href="cart.html">Cart - <span>{{request.user}}</span> <i class="fa fa-shopping-cart"></i></a>
+</ul>
+                        <ul class="nav navbar-nav navbar-right">
+      <li>
+                            {% if not user.is_authenticated%}
+                            <ul class="nav navbar-nav navbar-right">      
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="glyphicon glyphicon-user"></span>
+         {%trans 'Login' %} </a>
+          <div class="login dropdown-menu">
+            <form method="POST" id="formLogin" action="{% url 'rpc:login'%}?next={% url 'rpc:index' %}" class="form container-fluid">
+            {% csrf_token %}
+              <div class="form-group">
+                <label for="id_username" style="color:#6e6a6a;font-size:12px;">{% trans 'Name:' %}</label>
+                <input type="text" class="form-control" name="username" id="id_username">
+              </div>
+              <div class="form-group">
+                <label for="id_password" style="color:#6e6a6a;font-size:12px;">{% trans 'Password:' %}</label>
+                <input type="password" class="form-control" name="password" for="id_password">
+              </div>
+              <button type="submit" id="button" class="btn btn-block btn-info">{% trans 'Login' %}</button>
+            </form>
+          </div>
+        </li>
+        </ul>
+                            {%else%}
+                            <a href="cart.html">{%trans 'Cart'%} - <span>{{request.user}}</span> <i class="fa fa-shopping-cart"></i></a>{%endif%}
                                 </li>
+        {% if not user.is_authenticated%}                        
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>  {% trans 'Sign Up' %}</a></li>
+      {%else%}
+      <li><a href="{% url 'rpc:logout' %}?next={% url 'rpc:login' %}">
+      <span class="glyphicon glyphicon-log-in"></span> {%trans 'Log Out' %} </a></li>
+      {%endif%}
+   
+                            
                             
       </ul>
                 </div>  

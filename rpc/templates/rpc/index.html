@@ -1,4 +1,4 @@
-{%extends base_template_name %}
+{% extends "base.html" %}
 {% load cms_tags %}
 {% load i18n %}
 {%block content %}
@@ -197,8 +197,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Top Sellers</h2>
-                        <a href="" class="wid-view-more">View All</a>
+                        <h2 class="product-wid-title">{% trans 'Top Sellers' %}</h2>
+                        <a href="" class="wid-view-more">{% trans 'View All' %}</a>
                         <div class="single-wid-product">
                             <a href="single-product.html"><img src="data:image/png;base64,{{product.0.image_medium}}" alt="" class="product-thumb"></a>
                             <h2><a href="single-product.html">{{product.0.name}}</a></h2>
@@ -248,8 +248,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Recently Viewed</h2>
-                        <a href="#" class="wid-view-more">View All</a>
+                        <h2 class="product-wid-title">{% trans 'Recently Viewed' %}</h2>
+                        <a href="#" class="wid-view-more">{% trans 'View All' %}</a>
                         <div class="single-wid-product">
                             <a href="single-product.html"><img src="data:image/png;base64,{{product.18.image_medium}}" alt="" class="product-thumb"></a>
                             <h2><a href="single-product.html">{{product.18.name}}</a></h2>
@@ -296,8 +296,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="single-product-widget">
-                        <h2 class="product-wid-title">Top New</h2>
-                        <a href="#" class="wid-view-more">View All</a>
+                        <h2 class="product-wid-title">{% trans 'Top New' %}</h2>
+                        <a href="#" class="wid-view-more">{% trans 'View All' %}</a>
                         <div class="single-wid-product">
                             <a href="single-product.html"><img src="/static/img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
                             <h2><a href="single-product.html">Apple new i phone 6</a></h2>
@@ -354,7 +354,7 @@
                     <div class="footer-about-us">
                         <h2>F<span>ogits Solutions</span></h2>
                         <p>{%blocktrans%} Fogits is the first Tunisian SSII / SSLL specializing in Green IT by proposing eco-responsible ICT services{% endblocktrans %}</p>
-                        <p>It offers high-performance training, services and solutions at low cost, combined with an environmental approach by implementing Green IT principles.</p>
+                        <p>{%blocktrans%} It offers high-performance training, services and solutions at low cost, combined with an environmental approach by implementing Green IT principles. {%endblocktrans%} </p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -367,19 +367,19 @@
                 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
+                        <h2 class="footer-wid-title">{% trans 'Categories' %}</h2>
                         <ul>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Physical</a></li>
-                            <li><a href="#">Software</a></li>
-                            <li><a href="#">Computer</a></li>
+                            <li><a href="#">{% trans 'Services' %}</a></li>
+                            <li><a href="#">{% trans 'Physical' %}</a></li>
+                            <li><a href="#">{% trans 'Software' %}</a></li>
+                            <li><a href="#">{% trans 'Computer' %}</a></li>
                         </ul>                        
                     </div>
                 </div>
 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title"> Keep in touch  </h2>
+                        <h2 class="footer-wid-title">{% trans 'Keep in touch' %}  </h2>
                         <ul>
                             <li style="padding-top:15px;"><span class="glyphicon glyphicon-map-marker"></span>Route de gremda 0.5 km Ennasria</li>
                             <li style="padding-top:15px;"><span class="glyphicon glyphicon-phone"></span>Tel: (+216) 50 440 425</li>
@@ -391,12 +391,12 @@
                 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <h2 class="footer-wid-title">{% trans 'Newsletter' %}</h2>
+                        <p>{% trans 'Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!' %}</p>
                         <div class="newsletter-form">
                             <form action="#">
-                                <input type="email" placeholder="Type your email">
-                                <input type="submit" value="Subscribe">
+                                <input type="email" placeholder="{% trans 'Type your email' %}">
+                                <input type="submit" value="{% trans 'Subscribe' %}">
                             </form>
                         </div>
                     </div>
@@ -406,36 +406,10 @@
     </div> <!-- End footer top area -->
     
 
-<div id="googleMap" style="height:520px;width:100%;"></div>
-<script>
-function myMap() {
-var myCenter = new google.maps.LatLng(34.741186, 10.756835);
-var mapProp = {center:myCenter, zoom:14, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-var marker = new google.maps.Marker({position:myCenter, animation: google.maps.Animation.BOUNCE});
-marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwzJObpH-7MFhSslzlekKgtqax9mnQ4jk&callback=myMap"></script>
-<script>
-$('#submit').click(function()
-{
-    if( !$('#namee').val() ) {
-       $(".form1").addClass('has-warning has-feedback');
-       $(".span1").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
-    }
-    else if ( !$('#email').val() ) {
-       $(".form2").addClass('has-warning has-feedback');
-       $(".span2").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
-    }
-    else if ( !$('#comments').val() ) {
-        $(".form3").addClass('has-warning has-feedback');
-       $(".span3").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
-    }
-});
-</script>
+{%placeholder 'map'  or %}
 
 
+{%endplaceholder%}
 
 
 
@@ -444,7 +418,7 @@ $('#submit').click(function()
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; Fogist Solution, 2017 eCommerce. All Rights Reserved.</p>
+                        <p>&copy; Fogist Solution, 2017 eCommerce. {% trans 'All Rights Reserved.'%}</p>
                     </div>
                 </div>
                 

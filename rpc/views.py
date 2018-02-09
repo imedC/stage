@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect 
 import sys
 import xmlrpclib
+from django.contrib import messages 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate, login, logout
@@ -15,7 +16,7 @@ from django.views.generic import View
 
 def add(request):
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -28,21 +29,18 @@ def add(request):
 	category = models.execute_kw(db, uid, password,
 		'product.template', 'search_read',[[['create_uid', '=', 1]]], {'fields': ['categ_id','name',]} )
 	x = [x.get('id',) for x in record]
-	print '____fff__', x
-	if request.user.is_authenticated():
-		base_template_name = 'base.html'
-	else:
-		base_template_name = 'basevisitor.html'
+	#print '____fff__', x
+
 
 
 	return render(request, 'rpc/index.html',
-		{'product':record,'category' : category ,'product_range' : record[:4],'base_template_name':base_template_name})
+		{'product':record,'category' : category ,'product_range' : record[:4],})
 
 
 
 def services(request):
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -65,13 +63,13 @@ def services(request):
 	except EmptyPage:
 		cat= paginator.page(paginator.num_pages)
 	text = "Services"	
-	
-	return render(request, 'rpc/category.html',{'category': category,'cat':cat, 'text':text})
+	return render(request, 'rpc/category.html',
+		{'category': category,'cat':cat, 'text':text,})
 
 
 def software(request):
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -88,7 +86,7 @@ def software(request):
 
 	page = request.GET.get('page', 1)
 
-	paginator = Paginator(category, 8)
+	paginator = Paginator(category, 10)
 	try:
 		cat = paginator.page(page)
 	except PageNotAnInteger:
@@ -96,12 +94,14 @@ def software(request):
 	except EmptyPage:
 		cat= paginator.page(paginator.num_pages)
 
-	text = "Software"
-	return render(request, 'rpc/category.html',{'category': category,'cat':cat,'text':text})
+	text = _("Software")
+
+	return render(request, 'rpc/category.html',
+		{'category': category,'cat':cat,'text':text,})
 
 def physical(request):
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -118,7 +118,7 @@ def physical(request):
 
 	page = request.GET.get('page', 1)
 
-	paginator = Paginator(category, 8)
+	paginator = Paginator(category, 6)
 	try:
 		cat = paginator.page(page)
 	except PageNotAnInteger:
@@ -126,14 +126,16 @@ def physical(request):
 	except EmptyPage:
 		cat= paginator.page(paginator.num_pages)
 
-	text = "Physical"
-	return render(request, 'rpc/category.html',{'category': category,'cat':cat,'text':text,})
+	text = _("Physical")
+
+	return render(request, 'rpc/category.html',
+		{'category': category,'cat':cat,'text':text,})
 
 
 
 def products(request):
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -150,7 +152,7 @@ def products(request):
 	#print '___IDS____', category
 	page = request.GET.get('page', 1)
 
-	paginator = Paginator(category, 8)
+	paginator = Paginator(category, 9)
 	try:
 		cat = paginator.page(page)
 	except PageNotAnInteger:
@@ -159,13 +161,15 @@ def products(request):
 		cat= paginator.page(paginator.num_pages)
 	text = _("All Products")	
 	
-	return render(request, 'rpc/category.html',{'category': category,'cat':cat, 'text':text})
+
+	return render(request, 'rpc/category.html',
+		{'category': category,'cat':cat, 'text':text,})
 
 
 def single(request, pk,name,list_price, image,description):
 
 	url = 'http://localhost:8069'
-	db = 'odoodjangoconnector'
+	db = 'xmlrpc'
 	username = 'admin'
 	password = 'admin'
 	common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
@@ -185,9 +189,6 @@ def single(request, pk,name,list_price, image,description):
 
 
 
-	
-
-	
 		# mydict = {'george':16,'amber':19}
 		# print mydict.keys()[mydict.values().index(16)] 
 
@@ -232,7 +233,6 @@ class UserFormView(View):
 				if user.is_active:
 					login(request, user)
 					base_template_name = 'base.html'
-					model = Post
 					return render(request, 'rpc/index.html',{'base_template_name':base_template_name}) 
 		return render (request, self.template_name, {'form': form})
 
@@ -252,3 +252,13 @@ def login_user(request):
 		else:
 			return render(request, 'rpc/login.html', {'error_message': 'Invalid login'})
 	return render(request, 'rpc/login.html')
+
+
+
+def logout_user(request):
+	logout(request)
+	form = UserForm(request.POST or None)
+	context = {
+		"form": form,
+	}
+	return render(request, 'rpc/login.html', context)

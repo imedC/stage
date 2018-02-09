@@ -30,7 +30,7 @@ SECRET_KEY = 'k5xp8jcf)m)223gzc-z!0%0&up90c=*4)g*ln=iim0aj83m&80'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['284dfb8f.ngrok.io','localhost',]
+ALLOWED_HOSTS = ['5ea5792a.ngrok.io','localhost','127.0.0.1',]
 
 
 # Application definition
@@ -214,13 +214,8 @@ CMS_PLACEHOLDER_CONF = {}
 
 DATABASES = {
     'default': {
-        'CONN_MAX_AGE': 0,
         'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': 'localhost',
-        'NAME': 'project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

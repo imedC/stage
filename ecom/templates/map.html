@@ -1,0 +1,28 @@
+<div id="googleMap" style="height:520px;width:100%;"></div> 
+<script>
+function myMap() {
+var myCenter = new google.maps.LatLng(34.741186, 10.756835);
+var mapProp = {center:myCenter, zoom:14, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+var marker = new google.maps.Marker({position:myCenter, animation: google.maps.Animation.BOUNCE});
+marker.setMap(map);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwzJObpH-7MFhSslzlekKgtqax9mnQ4jk&callback=myMap"></script>
+<script>
+$('#submit').click(function()
+{
+    if( !$('#namee').val() ) {
+       $(".form1").addClass('has-warning has-feedback');
+       $(".span1").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
+    }
+    else if ( !$('#email').val() ) {
+       $(".form2").addClass('has-warning has-feedback');
+       $(".span2").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
+    }
+    else if ( !$('#comments').val() ) {
+        $(".form3").addClass('has-warning has-feedback');
+       $(".span3").addClass('glyphicon glyphicon-warning-sign form-control-feedback');
+    }
+});
+</script>
